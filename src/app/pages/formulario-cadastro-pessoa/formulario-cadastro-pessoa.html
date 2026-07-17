@@ -1,0 +1,220 @@
+<form [formGroup]="dadosCadastroPessoa" class="form-cadastroPessoa">
+  <h1>Cadastro de pessoa</h1>
+  <div class="form-content">
+    <mat-stepper #stepper class="form-stepper">
+      <mat-step [stepControl]="personalInfo">
+        <form formGroupName="personalInfo" class="form-group">
+          <ng-template matStepLabel>Informações pessoais</ng-template>
+          <div class="stepControls">
+            <div class="stepControlLeft"></div>
+            <div class="stepControlRight">
+              <button
+                type="button"
+                matButton
+                matStepperNext
+                aria-label="Next form"
+                matTooltip="Avançar"
+              >
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-form-field>
+            <mat-label>Firstname</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Middlename</mat-label>
+            <input matInput formControlName="middleName" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Nickname</mat-label>
+            <input matInput formControlName="nickName" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Birthday</mat-label>
+            <input matInput formControlName="birthday" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Father name</mat-label>
+            <input matInput formControlName="fatherName" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Mother name</mat-label>
+            <input matInput formControlName="motherName" />
+          </mat-form-field>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="personalContact">
+        <form formGroupName="personalContact" class="form-group">
+          <ng-template matStepLabel>Contato</ng-template>
+          <div class="stepControls">
+            <div class="stepControlLeft">
+              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+                <mat-icon>clear_all</mat-icon>
+              </button>
+            </div>
+            <div class="stepControlRight">
+              <button type="button" matButton matStepperPrevious matTooltip="Voltar">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+              </button>
+              <button type="button" matButton matStepperNext matTooltip="Avançar">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Landline</mat-label>
+            <input matInput formControlName="landline" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Cellphone</mat-label>
+            <input matInput formControlName="cellphone" />
+          </mat-form-field>
+
+          <div class="socialMedia">
+            <div class="socialMediaContainer">
+              <div class="socialMediaTypeGroup">
+                <mat-form-field matMiniFab>
+                  <mat-icon matIconPrefix>more</mat-icon>
+                  <mat-select>
+                    @for (socialMedia of socialMediaList | keyvalue; track socialMedia.key) {
+                      <mat-option [value]="socialMedia.value">{{
+                        socialMedia.value | titlecase
+                      }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <mat-form-field class="socialMediaURL">
+                <mat-label>URL</mat-label>
+                <textarea matInput formControlName="socialMedia"></textarea>
+              </mat-form-field>
+            </div>
+            <button matIconButton class="socialMediaAdd">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="personalAddress">
+        <form formGroupName="personalAddress" class="form-group">
+          <ng-template matStepLabel>Endereço</ng-template>
+
+          <div class="stepControls">
+            <div class="stepControlLeft">
+              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+                <mat-icon>clear_all</mat-icon>
+              </button>
+            </div>
+            <div class="stepControlRight">
+              <button type="button" matButton matStepperPrevious matTooltip="Voltar">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+              </button>
+              <button type="button" matButton matStepperNext matTooltip="Avançar">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Logradouro / Rua</mat-label>
+            <input matInput formControlName="street" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Número</mat-label>
+            <input matInput type="number" formControlName="number" />
+          </mat-form-field>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="personalIdentityInfo">
+        <form formGroupName="personalIdentityInfo" class="form-group">
+          <ng-template matStepLabel>Identidade pessoal</ng-template>
+
+          <div class="stepControls">
+            <div class="stepControlLeft">
+              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+                <mat-icon>clear_all</mat-icon>
+              </button>
+            </div>
+            <div class="stepControlMiddle">
+              <button matIconButton aria-label="Submit button" matTooltip="Enviar formulário">
+                <mat-icon>done_outline</mat-icon>
+              </button>
+            </div>
+            <div class="stepControlRight">
+              <button
+                type="button"
+                matButton
+                matStepperPrevious
+                matTooltip="Voltar para o passo anterior"
+              >
+                <mat-icon>keyboard_backspace</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <mat-form-field>
+            <mat-label>RG</mat-label>
+            <input matInput formControlName="RG" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input matInput formControlName="CPF" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>CNH</mat-label>
+            <input matInput formControlName="CNH" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Passaporte</mat-label>
+            <input matInput formControlName="Passport" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>CTPS</mat-label>
+            <input matInput formControlName="CTPS" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Identidade Profissional (OAB, CRM...)</mat-label>
+            <input matInput formControlName="ProfissionalIdentity" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Documento Militar</mat-label>
+            <input matInput formControlName="MilitaryDocument" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>RNE / CRNM</mat-label>
+            <input matInput formControlName="RNE_CRNM" />
+          </mat-form-field>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</form>

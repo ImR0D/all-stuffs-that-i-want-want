@@ -1,0 +1,95 @@
+button:has(.mat-icon) {
+  border-width: 0px;
+  border-style: outset;
+  padding: 0.2em 1em;
+}
+button:has(.mat-icon):hover {
+  background-color: #dfd9d9;
+  border-radius: 10px;
+}
+button:has(.mat-icon):active {
+  outline-width: 3px;
+  outline-color: blue;
+  filter: invert(0);
+  inset: 4px solid #000;
+}
+
+.form-cadastroPessoa {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+
+  & .form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+
+    & .form-stepper {
+      display: flex;
+      justify-content: flex-start;
+
+      & .form-group {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        & .stepControls {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          justify-content: space-between;
+          gap: 0.2em;
+          margin-bottom: 1em;
+
+          & .stepControlLeft {
+            display: flex;
+            align-items: flex-end;
+          }
+          & .stepControlMiddle {
+            display: flex;
+            & .mat-icon {
+              color: rgb(1, 217, 1);
+            }
+          }
+          & .stepControlRight {
+            display: flex;
+          }
+        }
+        & .socialMedia {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          height: 5.5em;
+
+          & .socialMediaContainer {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+
+            & .socialMediaTypeGroup {
+              display: flex;
+              width: 100%;
+
+              &:first-child {
+                width: 12em;
+              }
+            }
+            & .socialMediaURL {
+              width: 100%;
+            }
+          }
+          & .socialMediaAdd {
+            padding: 0 1em;
+            height: 4.5em;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

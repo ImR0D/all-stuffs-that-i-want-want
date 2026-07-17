@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FormularioCadastroPessoa } from './pages/formulario-cadastro-pessoa/formulario-cadastro-pessoa';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormularioCadastroPessoa],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('all-stuffs-that-i-want-want');
-}
+export class App {}

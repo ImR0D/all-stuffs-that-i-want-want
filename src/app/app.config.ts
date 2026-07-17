@@ -3,11 +3,21 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearence: 'fill' } },
+    [
+      {
+        provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+        useValue: { appearence: 'outline' },
+      },
+      {
+        provide: STEPPER_GLOBAL_OPTIONS,
+        useValue: { showError: true },
+      },
+    ],
   ],
 };
