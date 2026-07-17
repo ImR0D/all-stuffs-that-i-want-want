@@ -29,9 +29,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"],
+            "polyfills": ["@angular/localize/init"]
           },
           "configurations": {
             "production": {
@@ -71,7 +70,19 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "extract-i18n": {
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
+          "options": {
+            "buildTarget": "all-stuffs-that-i-want-want:build",
+            "format": "xlif",
+            "outputPath": "src/locales",
+            "targetFiles": ["messages.en.xlf"]
+          }
         }
+      },
+      "i18n": {
+        "sourceLocale": "pt"
       }
     }
   }
