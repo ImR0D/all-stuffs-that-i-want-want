@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,7 +9,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { KeyValuePipe, TitleCasePipe } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DadosCadastroPessoaService } from '../../services/DadosCadastroPessoa/dados-cadastro-pessoa-service';
-import SocialMediaTypes from '../../shared/models/social-media.models';
 
 @Component({
   selector: 'app-formulario-cadastro-pessoa',
