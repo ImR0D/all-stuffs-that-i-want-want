@@ -1,9 +1,10 @@
-<form [formGroup]="dadosCadastroPessoa" class="form-cadastroPessoa">
+<form [formGroup]="cadastroService.form" class="form-cadastroPessoa" (ngSubmit)="registrarPessoa()">
   <h1>Cadastro de pessoa</h1>
   <div class="form-content">
     <mat-stepper #stepper class="form-stepper">
-      <mat-step [stepControl]="personalInfo">
-        <form formGroupName="personalInfo" class="form-group">
+      <!-- Informações pessoais -->
+      <mat-step [stepControl]="cadastroService.personalInfo">
+        <div formGroupName="personalInfo" class="form-group">
           <ng-template matStepLabel>Informações pessoais</ng-template>
           <div class="stepControls">
             <div class="stepControlLeft"></div>
@@ -53,15 +54,22 @@
             <mat-label>Mother name</mat-label>
             <input matInput formControlName="motherName" />
           </mat-form-field>
-        </form>
+        </div>
       </mat-step>
 
-      <mat-step [stepControl]="personalContact">
-        <form formGroupName="personalContact" class="form-group">
+      <!-- Contato -->
+      <mat-step [stepControl]="cadastroService.personalContact">
+        <div formGroupName="personalContact" class="form-group">
           <ng-template matStepLabel>Contato</ng-template>
+
           <div class="stepControls">
             <div class="stepControlLeft">
-              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+              <button
+                type="button"
+                matIconButton
+                (click)="stepper.reset()"
+                matTooltip="Reiniciar formulário"
+              >
                 <mat-icon>clear_all</mat-icon>
               </button>
             </div>
@@ -74,6 +82,7 @@
               </button>
             </div>
           </div>
+
           <mat-form-field>
             <mat-label>E-mail</mat-label>
             <input matInput formControlName="email" />
@@ -89,39 +98,76 @@
             <input matInput formControlName="cellphone" />
           </mat-form-field>
 
-          <div class="socialMedia">
-            <div class="socialMediaContainer">
-              <div class="socialMediaTypeGroup">
-                <mat-form-field matMiniFab>
-                  <mat-icon matIconPrefix>more</mat-icon>
-                  <mat-select>
-                    @for (socialMedia of socialMediaList | keyvalue; track socialMedia.key) {
-                      <mat-option [value]="socialMedia.value">{{
-                        socialMedia.value | titlecase
-                      }}</mat-option>
-                    }
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <mat-form-field class="socialMediaURL">
-                <mat-label>URL</mat-label>
-                <textarea matInput formControlName="socialMedia"></textarea>
-              </mat-form-field>
+          <div class="socialMedia" formArrayName="socialMedia">
+            <div class="socialMediaContent">
+              @for (
+                group of cadastroService.socialMediaArray.controls;
+                track $index;
+                let i = $index
+              ) {
+                <div class="socialMediaContainer" [formGroupName]="i">
+                  <div class="socialMediaTypeGroup">
+                    <mat-form-field>
+                      <mat-icon matIconPrefix>more</mat-icon>
+                      <mat-select placeholder="Social Media" formControlName="mediaType">
+                        @for (
+                          socialMedia of cadastroService.socialMediaList | keyvalue;
+                          track socialMedia.key
+                        ) {
+                          <mat-option [value]="socialMedia.value">
+                            {{ socialMedia.value | titlecase }}
+                          </mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <mat-form-field class="socialMediaURL">
+                    <mat-label>URL</mat-label>
+                    <input matInput formControlName="mediaURL" placeholder="https://" />
+                  </mat-form-field>
+
+                  <button
+                    type="button"
+                    mat-icon-button
+                    class="socialMediaAdd"
+                    (click)="addSocialMediaURLItem()"
+                    matTooltip="Adicionar nova rede"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+
+                  @if (cadastroService.socialMediaArray.controls.length > 1) {
+                    <button
+                      type="button"
+                      mat-icon-button
+                      class="socialMediaRemove"
+                      (click)="removeSocialMediaURLItem(i)"
+                      matTooltip="Remover"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  }
+                </div>
+              }
             </div>
-            <button matIconButton class="socialMediaAdd">
-              <mat-icon>add</mat-icon>
-            </button>
           </div>
-        </form>
+        </div>
       </mat-step>
 
-      <mat-step [stepControl]="personalAddress">
-        <form formGroupName="personalAddress" class="form-group">
+      <!-- Endereço -->
+      <mat-step [stepControl]="cadastroService.personalAddress">
+        <div formGroupName="personalAddress" class="form-group">
           <ng-template matStepLabel>Endereço</ng-template>
 
           <div class="stepControls">
             <div class="stepControlLeft">
-              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+              <button
+                type="button"
+                matIconButton
+                (click)="stepper.reset()"
+                matTooltip="Reiniciar formulário"
+              >
                 <mat-icon>clear_all</mat-icon>
               </button>
             </div>
@@ -144,22 +190,32 @@
             <mat-label>Número</mat-label>
             <input matInput type="number" formControlName="number" />
           </mat-form-field>
-        </form>
+        </div>
       </mat-step>
 
-      <mat-step [stepControl]="personalIdentityInfo">
-        <form formGroupName="personalIdentityInfo" class="form-group">
+      <mat-step [stepControl]="cadastroService.personalIdentityInfo">
+        <div formGroupName="personalIdentityInfo" class="form-group">
           <ng-template matStepLabel>Identidade pessoal</ng-template>
 
           <div class="stepControls">
             <div class="stepControlLeft">
-              <button matIconButton (click)="stepper.reset()" matTooltip="Reiniciar formulário">
+              <button
+                type="button"
+                matIconButton
+                (click)="stepper.reset()"
+                matTooltip="Reiniciar formulário"
+              >
                 <mat-icon>clear_all</mat-icon>
               </button>
             </div>
             <div class="stepControlMiddle">
-              <button matIconButton aria-label="Submit button" matTooltip="Enviar formulário">
-                <mat-icon>done_outline</mat-icon>
+              <button
+                type="submit"
+                matIconButton
+                aria-label="Submit button"
+                matTooltip="Enviar formulário"
+              >
+                <mat-icon>done</mat-icon>
               </button>
             </div>
             <div class="stepControlRight">
@@ -213,7 +269,7 @@
             <mat-label>RNE / CRNM</mat-label>
             <input matInput formControlName="RNE_CRNM" />
           </mat-form-field>
-        </form>
+        </div>
       </mat-step>
     </mat-stepper>
   </div>
