@@ -20,40 +20,12 @@
               </button>
             </div>
           </div>
-          <mat-form-field>
-            <mat-label>Firstname</mat-label>
-            <input matInput formControlName="firstName" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Middlename</mat-label>
-            <input matInput formControlName="middleName" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Lastname</mat-label>
-            <input matInput formControlName="lastName" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Nickname</mat-label>
-            <input matInput formControlName="nickName" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Birthday</mat-label>
-            <input matInput formControlName="birthday" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Father name</mat-label>
-            <input matInput formControlName="fatherName" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Mother name</mat-label>
-            <input matInput formControlName="motherName" />
-          </mat-form-field>
+          @for (info of formInfoType; track info.id) {
+            <mat-form-field [id]="info.id">
+              <mat-label>{{ info.label }}</mat-label>
+              <input matInput [appMask]="info.mask" [formControlName]="info.formControlName" />
+            </mat-form-field>
+          }
         </div>
       </mat-step>
 
@@ -82,22 +54,16 @@
               </button>
             </div>
           </div>
-
-          <mat-form-field>
-            <mat-label>E-mail</mat-label>
-            <input matInput formControlName="email" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Landline</mat-label>
-            <input matInput formControlName="landline" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Cellphone</mat-label>
-            <input matInput formControlName="cellphone" />
-          </mat-form-field>
-
+          @for (contact of formContactType; track contact.id) {
+            <mat-form-field [id]="contact.id">
+              <mat-label>{{ contact.label }}</mat-label>
+              <input
+                matInput
+                [appMask]="contact.mask"
+                [formControlName]="contact.formControlName"
+              />
+            </mat-form-field>
+          }
           <div class="socialMedia" formArrayName="socialMedia">
             <div class="socialMediaContent">
               @for (
@@ -124,7 +90,12 @@
 
                   <mat-form-field class="socialMediaURL">
                     <mat-label>URL</mat-label>
-                    <input matInput formControlName="mediaURL" placeholder="https://" />
+                    <input
+                      matInput
+                      appMask="URL"
+                      formControlName="mediaURL"
+                      placeholder="https://"
+                    />
                   </mat-form-field>
 
                   <button
@@ -181,18 +152,16 @@
             </div>
           </div>
 
-          <mat-form-field>
-            <mat-label>Logradouro / Rua</mat-label>
-            <input matInput formControlName="street" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Número</mat-label>
-            <input matInput type="number" formControlName="number" />
-          </mat-form-field>
+          @for (addr of formAddressType; track addr.id) {
+            <mat-form-field [id]="addr.id">
+              <mat-label>{{ addr.label }}</mat-label>
+              <input matInput [appMask]="addr.mask" [formControlName]="addr.formControlName" />
+            </mat-form-field>
+          }
         </div>
       </mat-step>
 
+      <!-- Identity Info -->
       <mat-step [stepControl]="cadastroService.personalIdentityInfo">
         <div formGroupName="personalIdentityInfo" class="form-group">
           <ng-template matStepLabel>Identidade pessoal</ng-template>
@@ -214,7 +183,6 @@
                 matIconButton
                 aria-label="Submit button"
                 matTooltip="Enviar formulário"
-                (click)="stepper.reset()"
               >
                 <mat-icon>done</mat-icon>
               </button>
@@ -231,45 +199,12 @@
             </div>
           </div>
 
-          <mat-form-field>
-            <mat-label>RG</mat-label>
-            <input matInput formControlName="RG" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>CPF</mat-label>
-            <input matInput formControlName="CPF" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>CNH</mat-label>
-            <input matInput formControlName="CNH" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Passaporte</mat-label>
-            <input matInput formControlName="Passport" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>CTPS</mat-label>
-            <input matInput formControlName="CTPS" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Identidade Profissional (OAB, CRM...)</mat-label>
-            <input matInput formControlName="ProfissionalIdentity" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Documento Militar</mat-label>
-            <input matInput formControlName="MilitaryDocument" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>RNE / CRNM</mat-label>
-            <input matInput formControlName="RNE_CRNM" />
-          </mat-form-field>
+          @for (idInfo of formIdentityInfoType; track idInfo.id) {
+            <mat-form-field [id]="idInfo.id">
+              <mat-label>{{ idInfo.label }}</mat-label>
+              <input matInput [appMask]="idInfo.mask" [formControlName]="idInfo.formControlName" />
+            </mat-form-field>
+          }
         </div>
       </mat-step>
     </mat-stepper>

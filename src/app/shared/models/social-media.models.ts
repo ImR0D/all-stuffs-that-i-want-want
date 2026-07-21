@@ -4,6 +4,7 @@ enum SocialMediaTypes {
   Threads = 'Threads',
   Instagram = 'Instagram',
   Github = 'GitHub',
+  X = 'Twitter/X',
 }
 
 export default SocialMediaTypes;
