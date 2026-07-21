@@ -30,6 +30,12 @@ import { DadosCadastroPessoaService } from '../../services/DadosCadastroPessoa/d
 export class FormularioCadastroPessoa {
   protected cadastroService = inject(DadosCadastroPessoaService);
 
+  constructor() {
+    this.cadastroService.socialMediaArrayReset();
+    this.cadastroService.resetForm();
+    this.cadastroService.form.markAsUntouched();
+  }
+
   registrarPessoa(): void {
     if (this.cadastroService.form.valid) {
       const enviarDados = this.cadastroService.getRawValue();

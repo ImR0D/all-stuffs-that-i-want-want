@@ -64,6 +64,9 @@ export class DadosCadastroPessoaService {
   get socialMediaArray(): FormArray<FormGroup> {
     return this.personalContact.controls.socialMedia as FormArray<FormGroup>;
   }
+  socialMediaArrayReset(): void {
+    this.personalContact.controls.socialMedia.clear();
+  }
 
   criarGrupoSocialMedia(): FormGroup {
     return this._fb.group({
