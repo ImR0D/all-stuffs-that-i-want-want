@@ -37,7 +37,7 @@ export class DadosCadastroPessoaService {
       id: 'formPersonalInfoBirthday',
       label: 'Birthday',
       formControlName: 'birthday',
-      mask: 'BIRTHDAY',
+      mask: 'DATE',
     },
     fatherName: {
       id: 'formPersonalInfoFatherName',
@@ -196,7 +196,7 @@ export class DadosCadastroPessoaService {
       email: ['', [Validators.required, Validators.email]],
       landline: [''],
       cellphone: [''],
-      socialMedia: this._fb.array([this.criarGrupoSocialMedia()]),
+      socialMedia: this._fb.array([this.createSocialMediaGroup()]),
     }),
     personalAddress: this._fb.group({
       street: [''],
@@ -250,7 +250,7 @@ export class DadosCadastroPessoaService {
     this.addSocialMediaItem();
   }
 
-  criarGrupoSocialMedia(): FormGroup {
+  createSocialMediaGroup(): FormGroup {
     return this._fb.group({
       mediaType: [''],
       mediaURL: [''],
@@ -258,7 +258,7 @@ export class DadosCadastroPessoaService {
   }
 
   addSocialMediaItem(): void {
-    this.socialMediaArray.push(this.criarGrupoSocialMedia());
+    this.socialMediaArray.push(this.createSocialMediaGroup());
   }
 
   removeSocialMediaItem(index: number): void {

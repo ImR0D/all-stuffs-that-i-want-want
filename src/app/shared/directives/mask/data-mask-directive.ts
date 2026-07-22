@@ -39,6 +39,10 @@ export class DataMaskDirective implements ControlValueAccessor {
       return value.replace(/\W\s/g, '');
     }
 
+    if (type === 'DATE') {
+      return value.slice(0, 10).replace(/[^\d\/-]/, '');
+    }
+
     if (type === 'UF') {
       return value
         .replace(/[^\p{L}]/gu, '')
@@ -103,9 +107,9 @@ export class DataMaskDirective implements ControlValueAccessor {
           .replace(/^(\d{2})(\d)/, '($1) $2')
           .replace(/(\d{4})(\d{1,4})$/, '$1-$2');
 
-      case 'BIRTHDAY':
+      case 'DATE':
         return value
-          .slice(0, 8)
+          .slice(0, 10)
           .replace(/^(\d{2})(\d)/, '$1/$2')
           .replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
 
@@ -157,7 +161,7 @@ export class DataMaskDirective implements ControlValueAccessor {
     const rawValue = this.unmask(input.value);
     const maskedValue = this.applyMask(rawValue);
 
-    this.elementRef.nativeElement.value = maskedValue;
+    this.elementRef.nativeElement.value = maskedValue.trimStart();
 
     const lengthDiff = maskedValue.length - previousLength;
     const newCursorPosition = Math.max(0, originalSelectionStart + lengthDiff);
