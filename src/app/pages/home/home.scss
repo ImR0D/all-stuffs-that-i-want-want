@@ -1,14 +1,14 @@
 .home-container {
   display: flex;
   flex-direction: row;
-  padding: 5% 10% 15% 10%;
+  padding: 2.5% 10% 1.5% 10%;
   gap: 1em;
 
   .home-content {
     display: flex;
     flex-direction: column;
     align-content: center;
-    padding: 40px;
+    padding: 20px;
     gap: 1em;
     .content-title {
       font-size: 20px;
@@ -28,14 +28,18 @@
   }
   .menu-links {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-content: center;
-    width: 50%;
-    min-width: 10em;
+    width: 80%;
+    min-width: 12em;
+    max-width: fit-content;
     padding: 10px 1em;
     gap: 1em;
     box-shadow: 1px 1px 8px 0.01em #000;
     border-radius: 20px;
+    height: fit-content;
+    min-height: 500px;
 
     & .mat-grid-tile:hover {
       background-color: #30303050;
