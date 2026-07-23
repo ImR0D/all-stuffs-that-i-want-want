@@ -1,4 +1,4 @@
-import { Component, inject, input, viewChild } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { KeyValuePipe, TitleCasePipe } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DadosCadastroPessoaService } from '../../services/DadosCadastroPessoa/dados-cadastro-pessoa-service';
 import { DataMaskDirective } from '../../shared/directives/mask/data-mask-directive';
+import { BackToHomeButton } from '../../shared/components/back-to-home-button/back-to-home-button';
 
 @Component({
   selector: 'app-formulario-cadastro-pessoa',
@@ -25,6 +26,7 @@ import { DataMaskDirective } from '../../shared/directives/mask/data-mask-direct
     TitleCasePipe,
     MatTooltipModule,
     DataMaskDirective,
+    BackToHomeButton,
   ],
   templateUrl: './formulario-cadastro-pessoa.html',
   styleUrl: './formulario-cadastro-pessoa.scss',

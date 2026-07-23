@@ -1,0 +1,12 @@
+.mat-icon {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  font-size: 64px;
+  width: auto;
+  height: auto;
+  &:hover {
+    filter: brightness(5) invert(1) drop-shadow(0 0 10px #000);
+    cursor: pointer;
+  }
+}
