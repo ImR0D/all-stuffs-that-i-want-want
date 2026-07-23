@@ -1,0 +1,47 @@
+<div class="home-container">
+  <div class="home-content">
+    <div class="content-title">
+      <h2>Sobre o aplicativo</h2>
+    </div>
+    <div class="content-body">
+      <h2>Laboratório de estudo - Angular 22+ e Angular Material</h2>
+      <p>
+        Esta aplicação foi desenvolvida com o propósito fundamental de servir como um laboratório
+        prático para o aperfeiçoamento em desenvolvimento web. O objetivo principal do projeto é
+        explorar em profundidade a estrutura do ecossistema Angular, testando padrões de
+        arquitetura, organização de módulos, gerenciamento de estado e fluxos de dados reativos. É
+        um espaço contínuo de aprendizado, no qual novos conceitos e boas práticas são aplicados
+        diretamente na prática.
+      </p>
+      <p>
+        Para construir uma interface moderna, responsiva e acessível, o projeto conta com a
+        integração do Angular Material, aproveitando seus componentes visuais padronizados. Além
+        disso, a aplicação possui suporte a internacionalização através do módulo de I18n,
+        permitindo a alternância dinâmica de idiomas. Diversos outros recursos nativos da
+        plataforma, como formulários reativos, rotas avançadas e consumo de APIs, também poderão ser
+        implementadas para aprimorar o meu conhecimento no framework.
+      </p>
+      <p>
+        Na seção localizada à direita desta tela, você encontrará uma navegação lateral dedicada com
+        o catálogo completo das funcionalidades desenvolvidas. Cada link direciona para uma rota
+        específica que demonstra o uso prático de um recurso individual desenvolvido para prática,
+        facilitando o isolamento de testes e a visualização dos componentes.
+      </p>
+      <p>
+        Sinta-se à vontade para explorar os menus e testar as interações disponíveis em cada uma das
+        seções do sistema. E, farei o possível para sempre implementar algo para praticar e melhorar
+        minhas habilidades
+      </p>
+    </div>
+  </div>
+  <div class="menu-links">
+    <h2>Links</h2>
+    <mat-grid-list cols="1" rowHeight="4:1">
+      @for (link of routes; track link) {
+        <a [routerLink]="link.path">
+          <mat-grid-tile>{{ link.title }}</mat-grid-tile>
+        </a>
+      }
+    </mat-grid-list>
+  </div>
+</div>
