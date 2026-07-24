@@ -1,6 +1,11 @@
 import { inject, Service } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import SocialMediaTypes from '../../shared/models/social-media.models';
+import validateCpfCnpj from '../../shared/validators/validateCpfCnpj.validator';
+import validateRg from '../../shared/validators/validateRg.validator';
+import validateCnh from '../../shared/validators/validateCnh.validator';
+import validatePassport from '../../shared/validators/validatePassport.validator';
+import validateCtps from '../../shared/validators/validateCtps.validator';
 
 @Service()
 export class DadosCadastroPessoaService {
@@ -164,9 +169,9 @@ export class DadosCadastroPessoaService {
     },
     proid: {
       id: 'formPersonalIdentityInfoProid',
-      label: 'ProfissionalIdentity',
-      formControlName: 'profissionalIdentity',
-      mask: 'ProfissionalID',
+      label: 'Professional Identity',
+      formControlName: 'CIP',
+      mask: 'ProfessionalID',
     },
     military: {
       id: 'formPersonalIdentityInfoMilitary',
@@ -209,13 +214,14 @@ export class DadosCadastroPessoaService {
       uf: [''],
     }),
     personalIdentityInfo: this._fb.group({
-      RG: [''],
-      CPF: [''],
-      CNPJ: [''],
-      CNH: [''],
-      passport: [''],
-      CTPS: [''],
-      profissionalIdentity: [''],
+      RG: ['', [Validators.maxLength(10), validateRg()]],
+      CPF: ['', [Validators.maxLength(11), validateCpfCnpj()]],
+      CNPJ: ['', [Validators.maxLength(14), validateCpfCnpj()]],
+      CNH: ['', [Validators.maxLength(9), validateCnh()]],
+      passport: ['', [Validators.maxLength(9), validatePassport()]],
+      CTPS: ['', [Validators.maxLength(7), validateCtps()]],
+      BirthdayCertification: [''],
+      CIP: ['', [Validators.maxLength(12)]],
       militaryDocument: [''],
       RNE_CRNM: [''],
     }),

@@ -50,7 +50,14 @@ export class DataMaskDirective implements ControlValueAccessor {
         .toUpperCase();
     }
 
-    if (type === 'CNPJ' || type === 'PASSPORT' || type === 'ProfissionalID' || type === 'RNECRNM') {
+    if (type === 'ProfessionalID') {
+      return value
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .slice(0, 28)
+        .toUpperCase();
+    }
+
+    if (type === 'CNPJ' || type === 'PASSPORT' || type === 'RNECRNM') {
       return value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
     }
 
