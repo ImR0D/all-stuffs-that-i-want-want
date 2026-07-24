@@ -21,7 +21,9 @@ button:has(.mat-icon):active {
   align-items: center;
   justify-content: center;
   align-content: center;
-
+  h1 {
+    padding-top: 1em;
+  }
   & .form-content {
     display: flex;
     flex-direction: column;
